@@ -8,3 +8,16 @@
 @import "./structure/variables";
 
 @import "./site/page";
+
+.mobile-only {
+	display: none;
+	@include media(s) {
+		display: block;
+	}
+}
+
+.desktop-only {
+	@include media(s) {
+		display: none;
+	}
+}

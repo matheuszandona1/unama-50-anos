@@ -340,32 +340,21 @@ Math.easeInOutQuad = function (t, b, c, d) {
 
 	function initTimeline(timeline) {
 		// set dates left position
-		var left = 0
+		var left = 70
 		for (var i = 0; i < timeline.dateValues.length; i++) {
-			var j = i == 0 ? 0 : i - 1
-			var distance = daydiff(timeline.dateValues[j], timeline.dateValues[i]),
-				distanceNorm = (Math.round(distance / timeline.minLapse) + 2) * timeline.eventsMinDistance,
-				containerWidth = timeline.datesContainer.offsetWidth,
-				distanceCorrecture = 0
+			var distanceNorm = 100 // Define a distância padrão entre os eventos como 100px
 
-			if (distanceNorm < timeline.eventsMinDistance) {
-				distanceNorm = timeline.eventsMaxDistance
-			} else if (distanceNorm > timeline.eventsMaxDistance) {
-				distanceNorm = timeline.eventsMinDistance
-			}
-			left = left + distanceNorm
+			// Atualiza a posição esquerda (left) para o próximo evento
+			left += i == 0 ? 0 : distanceNorm // No primeiro evento, left = 0, depois incrementa de 100 em 100
+
+			// Define o atributo style para a posição esquerda do evento
 			timeline.date[i].setAttribute("style", "left:" + left + "px")
 		}
 
 		// set line/filling line dimensions
-		timeline.line.style.width = left + timeline.eventsMinDistance + distanceCorrecture + "px"
-		timeline.lineLength = left + timeline.eventsMinDistance + distanceCorrecture
-
-		// add 100px more to line/filling line if container bigger then timeline lineLength
-		if (containerWidth > timeline.lineLength) {
-			timeline.line.style.width = left + timeline.eventsMinDistance + distanceCorrecture + "px"
-			timeline.lineLength = timeline.lineLength + distanceCorrecture
-		}
+		var additionalSpace = 100 // Espaço adicional para garantir que a linha se estenda além do último evento
+		timeline.line.style.width = left + additionalSpace + "px"
+		timeline.lineLength = left + additionalSpace
 
 		// reveal timeline
 		Util.addClass(timeline.element, "h--timeline--loaded")
