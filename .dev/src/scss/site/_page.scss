@@ -71,7 +71,7 @@
 }
 .capao {
 	background: url("../assets/capao.png?as=webp");
-	height: 988px;
+	height: 999px;
 	background-repeat: no-repeat;
 	@include media(s) {
 		background: url("../assets/capao-mobile.png");
@@ -142,6 +142,7 @@
 .video {
 	background: url("../assets/fundo-1.png?as=webp");
 	background-repeat: no-repeat;
+	margin-bottom: -20px;
 	&__container {
 		display: flex;
 		padding: 100px 24px;
@@ -1492,7 +1493,7 @@
 		}
 
 		.button {
-			font-size: 16px;
+			font-size: 15px;
 			font-style: normal;
 			font-weight: 400;
 			line-height: 111.4%;
